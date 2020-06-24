@@ -6,9 +6,9 @@ import Person from "./Person/Person"
 class App extends Component {
   state = {
     persons: [
-      { name: "sankar", age: 28 },
-      { name: "sam", age: 30 },
-      { name: "indra", age: 24 },
+      { id: "1", name: "sankar", age: 28 },
+      { id: "2", name: "sam", age: 30 },
+      { id: "3", name: "indra", age: 24 },
     ],
     displayFlag: false
   }
@@ -22,7 +22,7 @@ class App extends Component {
   deleteNameHandler = (personIndex) => {
     // in JS object and array are reference type.
     // it refer to original copy which can lead to a bug and a bad practice too.
-    // good: copy the elems before oparation
+    // good: copy the elems before operation
 
     // const persons = this.state.persons.slice()
 
@@ -61,6 +61,7 @@ class App extends Component {
             click={()=>this.deleteNameHandler(index)}
             name={person.name}
             age={person.age}
+            key={person.id}
             />
           })}
         </div>
