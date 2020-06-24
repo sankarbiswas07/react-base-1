@@ -20,7 +20,14 @@ class App extends Component {
   }
 
   deleteNameHandler = (personIndex) => {
-      const persons = this.state.persons
+    // in JS object and array are reference type.
+    // it refer to original copy which can lead to a bug and a bad practice too.
+    // good: copy the elems before oparation
+
+    // const persons = this.state.persons.slice()
+
+    const persons = [...this.state.persons]
+      // const persons = this.state.persons
       persons.splice(personIndex, 1)
       this.setState({persons})
   }
