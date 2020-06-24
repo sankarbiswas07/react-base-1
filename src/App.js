@@ -13,20 +13,16 @@ class App extends Component {
     displayFlag: false
   }
 
-  switchNameHandler = (name) => {
-    this.setState({
-      persons: [
-        { name: name, age: 28 },
-        { name: "sam", age: 30 },
-        { name: "indra", age: 24 },
-      ]
-    })
-  }
-
   nameToggleHandler = () => {
     console.log("toggle")
     const flag = this.state.displayFlag
     this.setState({ displayFlag: !flag })
+  }
+
+  deleteNameHandler = (personIndex) => {
+      const persons = this.state.persons
+      persons.splice(personIndex, 1)
+      this.setState({persons})
   }
 
   nameChangeHandler = (event) => {
@@ -53,21 +49,13 @@ class App extends Component {
     if (this.state.displayFlag) {
       person = (
         <div>
-          {this.state.persons.map(person=>{
+          {this.state.persons.map((person,index)=>{
             return <Person 
+            click={()=>this.deleteNameHandler(index)}
             name={person.name}
             age={person.age}
             />
           })}
-          {/* <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-
-          <Person
-            click={this.switchNameHandler.bind(this, "Sankar!!!")}
-            changed={this.nameChangeHandler}
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}> Special One !!!</Person>
-
-          <Person name={this.state.persons[2].name} age={this.state.persons[2].age} /> */}
         </div>
       )
     }
@@ -77,18 +65,11 @@ class App extends Component {
         <h1>Hi, I'm React-app</h1>
         <button
           style={style}
-          // onClick={() => this.switchNameHandler("Buro")}
           onClick={this.nameToggleHandler}
         >Switch Name</button>
         {person}
       </div>
-    );
-    // return React.createElement(
-    //   "div", {className:"App"},
-    //   React.createElement(
-    //     "h1",null,"Behind the above return JSX working like this, It's messy!!!"
-    //   )
-    // )
+    )
   }
 }
 
