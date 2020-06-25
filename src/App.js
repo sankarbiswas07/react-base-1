@@ -51,7 +51,11 @@ class App extends Component {
       font: "inherit",
       border: "1px solid blue",
       padding: "8px",
-      cursor: "pointer"
+      cursor: "pointer",
+      ":hover": {
+        backgroundColor: "lightgreen",
+        color:"black"
+      }
     }
 
     let person = null
@@ -71,6 +75,10 @@ class App extends Component {
       )
       // change color
       style.backgroundColor = "red";
+      style[":hover"] = {
+        backgroundColor: "salmon",
+        color: "black"
+      }
     }
 
     let classes = []
