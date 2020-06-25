@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from "radium"
+import Radium, { StyleRoot } from "radium"
 import Person from "./Person/Person"
 
 class App extends Component {
@@ -26,13 +26,13 @@ class App extends Component {
     // const persons = this.state.persons.slice()
 
     const persons = [...this.state.persons]
-      // const persons = this.state.persons
-      persons.splice(personIndex, 1)
-      this.setState({persons})
+    // const persons = this.state.persons
+    persons.splice(personIndex, 1)
+    this.setState({ persons })
   }
 
   nameChangeHandler = (event, id) => {
-    const personIndex = this.state.persons.findIndex(person=>{
+    const personIndex = this.state.persons.findIndex(person => {
       return person.id === id
     })
     const person = {
@@ -41,7 +41,7 @@ class App extends Component {
     person.name = event.target.value
     const persons = [...this.state.persons]
     persons[personIndex] = person
-    this.setState({persons})
+    this.setState({ persons })
   }
 
   render() {
@@ -54,24 +54,26 @@ class App extends Component {
       cursor: "pointer",
       ":hover": {
         backgroundColor: "lightgreen",
-        color:"black"
+        color: "black"
       }
     }
 
     let person = null
     if (this.state.displayFlag) {
       person = (
-        <div>
-          {this.state.persons.map((person,index)=>{
-            return <Person 
-            click={()=>this.deleteNameHandler(index)}
-            name={person.name}
-            age={person.age}
-            key={person.id}
-            changed={(event)=>this.nameChangeHandler(event, person.id)}
-            />
-          })}
-        </div>
+        <StyleRoot>
+          <div>
+            {this.state.persons.map((person, index) => {
+              return <Person
+                click={() => this.deleteNameHandler(index)}
+                name={person.name}
+                age={person.age}
+                key={person.id}
+                changed={(event) => this.nameChangeHandler(event, person.id)}
+              />
+            })}
+          </div>
+        </StyleRoot>
       )
       // change color
       style.backgroundColor = "red";
@@ -82,10 +84,10 @@ class App extends Component {
     }
 
     let classes = []
-    if(this.state.persons.length <= 2){
+    if (this.state.persons.length <= 2) {
       classes.push("red")
     }
-    if(this.state.persons.length <= 1){
+    if (this.state.persons.length <= 1) {
       classes.push("bold")
     }
     return (
