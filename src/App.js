@@ -14,7 +14,6 @@ class App extends Component {
   }
 
   nameToggleHandler = () => {
-    console.log("toggle")
     const flag = this.state.displayFlag
     this.setState({ displayFlag: !flag })
   }
@@ -70,14 +69,21 @@ class App extends Component {
           })}
         </div>
       )
-
       // change color
       style.backgroundColor = "red";
     }
 
+    let classes = []
+    if(this.state.persons.length <= 2){
+      classes.push("red")
+    }
+    if(this.state.persons.length <= 1){
+      classes.push("bold")
+    }
     return (
       <div className="App">
         <h1>Hi, I'm React-app</h1>
+        <p className={classes.join(" ")}>This is working!!!</p>
         <button
           style={style}
           onClick={this.nameToggleHandler}
