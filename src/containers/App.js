@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium, { StyleRoot } from "radium"
-import Person from "./Person/Person"
+
+import Persons from "../components/Persons/Persons"
+import Cockpit from "../components/Cockpit/Cockpit"
 
 class App extends Component {
   state = {
@@ -52,56 +53,37 @@ class App extends Component {
       border: "1px solid blue",
       padding: "8px",
       cursor: "pointer",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "black"
-      }
+      // ":hover": {
+      //   backgroundColor: "lightgreen",
+      //   color: "black"
+      // }
     }
 
     let person = null
     if (this.state.displayFlag) {
       person = (
-        <StyleRoot>
-          <div>
-            {this.state.persons.map((person, index) => {
-              return <Person
-                click={() => this.deleteNameHandler(index)}
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                changed={(event) => this.nameChangeHandler(event, person.id)}
-              />
-            })}
-          </div>
-        </StyleRoot>
+        <div>
+          <Persons
+            persons={this.state.persons}
+            clicked={this.deleteNameHandler}
+            changed={this.nameChangeHandler}
+          />
+        </div>
       )
       // change color
       style.backgroundColor = "red";
-      style[":hover"] = {
-        backgroundColor: "salmon",
-        color: "black"
-      }
     }
 
-    let classes = []
-    if (this.state.persons.length <= 2) {
-      classes.push("red")
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push("bold")
-    }
     return (
       <div className="App">
-        <h1>Hi, I'm React-app</h1>
-        <p className={classes.join(" ")}>This is working!!!</p>
-        <button
-          style={style}
-          onClick={this.nameToggleHandler}
-        >Switch Name</button>
+        <Cockpit 
+        clicked={this.nameToggleHandler}
+        persons= {this.state.persons}
+        showPerson={this.state.displayFlag}/>
         {person}
       </div>
     )
   }
 }
 
-export default Radium(App)
+export default App

@@ -1,0 +1,13 @@
+.Cockpit button:hover{
+    background-color: seagreen;
+    color: black
+}
+
+.Cockpit button.Red {
+    background-color: brown;
+}
+
+.Cockpit button.Red:hover {
+    background-color: salmon;
+    color: black;
+}
