@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-import Persons from "../components/Persons/Persons"
-import Cockpit from "../components/Cockpit/Cockpit"
+import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
-  constructor(props){
-    super(props)
-    console.log("App.js > constructor")
+  constructor(props) {
+    super(props);
+    console.log("App.js > constructor");
   }
   state = {
     persons: [
@@ -15,17 +15,28 @@ class App extends Component {
       { id: "2", name: "sam", age: 30 },
       { id: "3", name: "indra", age: 24 },
     ],
-    displayFlag: false
-  }
-  static getDerivedStateFromProps(props, state){
-    console.log("App.js > getDerivedStateFromProps")
-    return state
+    displayFlag: false,
+  };
+  static getDerivedStateFromProps(props, state) {
+    console.log("App.js > getDerivedStateFromProps");
+    return state;
   }
 
-  nameToggleHandler = () => {
-    const flag = this.state.displayFlag
-    this.setState({ displayFlag: !flag })
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("App.js > shouldComponentUpdate");
+    return true
   }
+
+  // getSnapshotBeforeUpdate(nextProps, nextState) {
+  //   console.log("App.js > getSnapshotBeforeUpdate");
+  // }
+  componentDidUpdate() {
+    console.log("App.js > componentDidUpdate");
+  }
+  nameToggleHandler = () => {
+    const flag = this.state.displayFlag;
+    this.setState({ displayFlag: !flag });
+  };
 
   deleteNameHandler = (personIndex) => {
     // in JS object and array are reference type.
@@ -34,24 +45,24 @@ class App extends Component {
 
     // const persons = this.state.persons.slice()
 
-    const persons = [...this.state.persons]
+    const persons = [...this.state.persons];
     // const persons = this.state.persons
-    persons.splice(personIndex, 1)
-    this.setState({ persons })
-  }
+    persons.splice(personIndex, 1);
+    this.setState({ persons });
+  };
 
   nameChangeHandler = (event, id) => {
-    const personIndex = this.state.persons.findIndex(person => {
-      return person.id === id
-    })
+    const personIndex = this.state.persons.findIndex((person) => {
+      return person.id === id;
+    });
     const person = {
-      ...this.state.persons[personIndex]
-    }
-    person.name = event.target.value
-    const persons = [...this.state.persons]
-    persons[personIndex] = person
-    this.setState({ persons })
-  }
+      ...this.state.persons[personIndex],
+    };
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    this.setState({ persons });
+  };
 
   render() {
     console.log("App.js > render");
@@ -65,9 +76,9 @@ class App extends Component {
       //   backgroundColor: "lightgreen",
       //   color: "black"
       // }
-    }
+    };
 
-    let person = null
+    let person = null;
     if (this.state.displayFlag) {
       person = (
         <div>
@@ -77,24 +88,25 @@ class App extends Component {
             changed={this.nameChangeHandler}
           />
         </div>
-      )
+      );
       // change color
       style.backgroundColor = "red";
     }
 
     return (
       <div className="App">
-        <Cockpit 
-        clicked={this.nameToggleHandler}
-        persons= {this.state.persons}
-        showPerson={this.state.displayFlag}/>
+        <Cockpit
+          clicked={this.nameToggleHandler}
+          persons={this.state.persons}
+          showPerson={this.state.displayFlag}
+        />
         {person}
       </div>
-    )
+    );
   }
 
-  componentDidMount(){
-    console.log("App.js > componentDidMount")
+  componentDidMount() {
+    console.log("App.js > componentDidMount");
   }
 
   // componentWillMount(){
@@ -102,4 +114,4 @@ class App extends Component {
   // }
 }
 
-export default App
+export default App;
