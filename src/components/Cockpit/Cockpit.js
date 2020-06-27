@@ -1,8 +1,17 @@
-import React from "react"
-
+import React, {useEffect} from "react"
 import classes from "./Cockpit.css"
 
 const Cockpit = (props) => {
+
+  // combines componentDidMount and componentDidUpdate
+  // problem. every time calling API. which is not right
+  useEffect(()=>{
+    console.log("Cockpit.js > useEffect")
+    setTimeout(()=>{
+        alert("Some API call to save user list")
+    },1000)
+  })
+
     let assignedClasses = []
     let btnClass = ""
     if(props.showPerson){
