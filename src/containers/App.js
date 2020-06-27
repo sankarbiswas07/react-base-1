@@ -5,6 +5,10 @@ import Persons from "../components/Persons/Persons"
 import Cockpit from "../components/Cockpit/Cockpit"
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    console.log("App.js > constructor")
+  }
   state = {
     persons: [
       { id: "1", name: "sankar", age: 28 },
@@ -12,6 +16,10 @@ class App extends Component {
       { id: "3", name: "indra", age: 24 },
     ],
     displayFlag: false
+  }
+  static getDerivedStateFromProps(props, state){
+    console.log("App.js > getDerivedStateFromProps")
+    return state
   }
 
   nameToggleHandler = () => {
@@ -46,7 +54,7 @@ class App extends Component {
   }
 
   render() {
-
+    console.log("App.js > render");
     const style = {
       backgroundColor: "green",
       font: "inherit",
@@ -83,6 +91,14 @@ class App extends Component {
         {person}
       </div>
     )
+  }
+
+  componentDidMount(){
+    console.log("App.js > componentDidMount")
+  }
+
+  componentWillMount(){
+    console.log("App.js > componentWillMount")
   }
 }
 
