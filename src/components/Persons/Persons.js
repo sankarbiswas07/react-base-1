@@ -3,6 +3,24 @@ import React, {Component} from "react"
 import Person from "./Person/Person"
 
 class Persons extends Component{
+    //  static getDerivedStateFromProps(props, state){
+    //     console.log("Persons.js > getDerivedStateFromProps")
+    //     return state
+    //  }
+
+     shouldComponentUpdate(nextProps, nextState){
+        console.log("Persons.js > shouldComponentUpdate")
+        return true
+     }
+
+     getSnapshotBeforeUpdate(preProps, preState){
+        console.log("Persons.js > getSnapshotBeforeUpdate")
+        return null
+     }
+
+     componentDidUpdate(){
+        console.log("Persons.js > componentDidUpdate")
+     }
 
     render(){
         console.log("Persons.js > rendering...")
