@@ -16,6 +16,7 @@ class App extends Component {
       { id: "3", name: "indra", age: 24 },
     ],
     displayFlag: false,
+    showCockPit: true,
   };
   static getDerivedStateFromProps(props, state) {
     console.log("App.js > getDerivedStateFromProps");
@@ -24,7 +25,7 @@ class App extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log("App.js > shouldComponentUpdate");
-    return true
+    return true;
   }
 
   // getSnapshotBeforeUpdate(nextProps, nextState) {
@@ -95,11 +96,21 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Cockpit
-          clicked={this.nameToggleHandler}
-          persons={this.state.persons}
-          showPerson={this.state.displayFlag}
-        />
+        <button
+          onClick={() => {
+            this.setState({ showCockPit: !this.state.showCockPit});
+          }}
+        >
+          Remove cockpit
+        </button>
+        {this.state.showCockPit ? (
+          <Cockpit
+            clicked={this.nameToggleHandler}
+            persons={this.state.persons}
+            showPerson={this.state.displayFlag}
+          />
+        ) : null}
+
         {person}
       </div>
     );

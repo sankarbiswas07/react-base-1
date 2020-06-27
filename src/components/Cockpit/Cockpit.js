@@ -10,7 +10,20 @@ const Cockpit = (props) => {
     setTimeout(()=>{
         alert("Some API call to save user list")
     },1000)
-  })
+    
+  }, [props.persons]) // mention when to run, means specify to it's attached props
+  // i can write another useEffect hooks for another props
+  // for first time (one one execution during load)
+  useEffect(()=>{
+    console.log("Cockpit.js > useEffect => Load only once")
+    const timer = setTimeout(()=>{
+        alert("One time - API call for analytics may be")
+    },1000)
+    return () => {
+      clearTimeout(timer)
+      console.log("Cleaned UP, chill")
+    }
+  }, [])
 
     let assignedClasses = []
     let btnClass = ""
