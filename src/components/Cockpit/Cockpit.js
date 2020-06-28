@@ -8,7 +8,7 @@ const Cockpit = (props) => {
   useEffect(()=>{
     console.log("Cockpit.js > useEffect")
     setTimeout(()=>{
-        alert("Some API call to save user list")
+        alert("Some API call - cockpit")
     },1000)
     
   }, [props.persons]) // mention when to run, means specify to it's attached props
@@ -30,10 +30,10 @@ const Cockpit = (props) => {
     if(props.showPerson){
         btnClass = classes.Red
     }
-    if (props.persons.length <= 2) {
+    if (props.personsLength <= 2) {
       assignedClasses.push(classes.red)
     }
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
       assignedClasses.push(classes.bold)
     }
 
@@ -48,3 +48,4 @@ const Cockpit = (props) => {
     )
 }
 export default Cockpit
+// export default memo(Cockpit)
